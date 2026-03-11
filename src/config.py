@@ -1,4 +1,3 @@
 import os
 
-# Você pode usar variáveis de ambiente
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "sua_chave_aqui")
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY", "AIzaSyBPd6FFmXQPtgl_sl15e3TWXZKa_4AeD6o")
