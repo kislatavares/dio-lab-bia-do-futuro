@@ -20,8 +20,7 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 
 > Você modificou ou expandiu os dados mockados? Descreva aqui.
 
-[Sua descrição aqui]
-
+Os dados originais foram enriquecidos com novas categorias de gastos (como transporte, lazer, assinaturas), limites de orçamento fictícios para cada categoria e exemplos de transações em diferentes meses. Também foram adicionados perfis de clientes simulados para testar respostas personalizadas do agente.
 ---
 
 ## Estratégia de Integração
@@ -29,27 +28,26 @@ Descreva se usou os arquivos da pasta `data`, por exemplo:
 ### Como os dados são carregados?
 > Descreva como seu agente acessa a base de conhecimento.
 
-[ex: Os JSON/CSV são carregados no início da sessão e incluídos no contexto do prompt]
+Os arquivos JSON e CSV são carregados no início de cada sessão do agente. Eles são lidos e transformados em dicionários ou dataframes, que ficam disponíveis para consulta dinâmica sempre que o usuário faz uma pergunta sobre gastos, alertas ou relatórios.
 
 ### Como os dados são usados no prompt?
 > Os dados vão no system prompt? São consultados dinamicamente?
 
-[Sua descrição aqui]
-
+Os dados são consultados dinamicamente pelo agente. O system prompt define as regras gerais de interação, mas o histórico de transações, perfis e categorias são enviados ao modelo conforme a necessidade, garantindo respostas precisas sem sobrecarregar o prompt com informações irrelevantes.
 ---
 
 ## Exemplo de Contexto Montado
 
 > Mostre um exemplo de como os dados são formatados para o agente.
 
-```
 Dados do Cliente:
 - Nome: João Silva
 - Perfil: Moderado
 - Saldo disponível: R$ 5.000
+- Limite mensal: Alimentação R$ 1.000 | Transporte R$ 600 | Lazer R$ 400
 
 Últimas transações:
-- 01/11: Supermercado - R$ 450
-- 03/11: Streaming - R$ 55
-...
-```
+- 01/11: Supermercado - R$ 450 (Alimentação)
+- 03/11: Streaming - R$ 55 (Lazer)
+- 05/11: Posto de Gasolina - R$ 200 (Transporte)
+- 06/11: Restaurante - R$ 120 (Alimentação)
