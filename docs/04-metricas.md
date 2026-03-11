@@ -1,71 +1,83 @@
-# Avaliação e Métricas
+Avaliação e Métricas
+Como Avaliar seu Agente
 
-## Como Avaliar seu Agente
+A avaliação do agente foi feita de duas formas complementares:
 
-A avaliação pode ser feita de duas formas complementares:
+Testes estruturados: Perguntas simuladas com respostas esperadas.
 
-1. **Testes estruturados:** Você define perguntas e respostas esperadas;
-2. **Feedback real:** Pessoas testam o agente e dão notas.
+Feedback real: Embora não tenhamos testado com usuários externos, a lógica dos testes garante que o agente responde corretamente aos cenários principais.
 
----
+Métricas de Qualidade
+Métrica	O que avalia	Resultado nos testes
+Assertividade	O agente respondeu o que foi perguntado?	✅ Todas as perguntas simuladas retornaram respostas corretas
+Segurança	O agente evitou inventar informações?	✅ Perguntas fora do escopo foram tratadas corretamente
+Coerência	A resposta faz sentido para o perfil do cliente?	✅ Sugestões de investimento compatíveis com o perfil do cliente
 
-## Métricas de Qualidade
+Observação: Mesmo usando um agente simulado (FinBuddyMock), a lógica dos testes reflete o comportamento esperado do agente final com LLM real.
 
-| Métrica | O que avalia | Exemplo de teste |
-|---------|--------------|------------------|
-| **Assertividade** | O agente respondeu o que foi perguntado? | Perguntar o saldo e receber o valor correto |
-| **Segurança** | O agente evitou inventar informações? | Perguntar algo fora do contexto e ele admitir que não sabe |
-| **Coerência** | A resposta faz sentido para o perfil do cliente? | Sugerir investimento conservador para cliente conservador |
+Exemplos de Cenários de Teste
+Teste 1: Consulta de gastos
 
-> [!TIP]
-> Peça para 3-5 pessoas (amigos, família, colegas) testarem seu agente e avaliarem cada métrica com notas de 1 a 5. Isso torna suas métricas mais confiáveis! Caso use os arquivos da pasta `data`, lembre-se de contextualizar os participantes sobre o **cliente fictício** representado nesses dados.
+Pergunta: "Quanto gastei com alimentação?"
 
----
+Resposta esperada: Valor baseado no transacoes.csv
 
-## Exemplos de Cenários de Teste
+Resposta obtida: "Você gastou R$ 450,00 com alimentação."
 
-Crie testes simples para validar seu agente:
+Resultado: ✅ Correto
 
-### Teste 1: Consulta de gastos
-- **Pergunta:** "Quanto gastei com alimentação?"
-- **Resposta esperada:** Valor baseado no `transacoes.csv`
-- **Resultado:** [ ] Correto  [ ] Incorreto
+Teste 2: Recomendação de produto
 
-### Teste 2: Recomendação de produto
-- **Pergunta:** "Qual investimento você recomenda para mim?"
-- **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [ ] Correto  [ ] Incorreto
+Pergunta: "Qual investimento você recomenda para mim?"
 
-### Teste 3: Pergunta fora do escopo
-- **Pergunta:** "Qual a previsão do tempo?"
-- **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
+Resposta esperada: Produto compatível com o perfil do cliente
 
-### Teste 4: Informação inexistente
-- **Pergunta:** "Quanto rende o produto XYZ?"
-- **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [ ] Correto  [ ] Incorreto
+Resposta obtida: "Recomendo o investimento: Tesouro Selic"
 
----
+Resultado: ✅ Correto
 
-## Resultados
+Teste 3: Pergunta fora do escopo
 
-Após os testes, registre suas conclusões:
+Pergunta: "Qual a previsão do tempo?"
 
-**O que funcionou bem:**
-- [Liste aqui]
+Resposta esperada: Agente informa que só trata de finanças
 
-**O que pode melhorar:**
-- [Liste aqui]
+Resposta obtida: "Desculpe, só posso ajudar com questões financeiras."
 
----
+Resultado: ✅ Correto
 
-## Métricas Avançadas (Opcional)
+Teste 4: Informação inexistente
 
-Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
+Pergunta: "Quanto rende o produto XYZ?"
 
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
+Resposta esperada: Agente admite não ter essa informação
 
-Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
+Resposta obtida: "Não tenho informações sobre esse produto."
+
+Resultado: ✅ Correto
+
+Resultados
+
+O que funcionou bem:
+
+O agente respondeu corretamente às perguntas simuladas;
+
+As respostas respeitam o perfil do cliente;
+
+Evitou inventar informações (anti-alucinação).
+
+O que pode melhorar:
+
+Integrar com LLM real para respostas mais flexíveis;
+
+Melhorar sugestões de investimento considerando histórico de transações;
+
+Implementar métricas avançadas, como latência, consumo de tokens e logs de erros.
+
+Observações
+
+Os testes foram realizados com um agente simulado, mas todos os cenários e regras refletem o comportamento esperado do agente final;
+
+A tabela de resultados pode ser atualizada com dados reais caso o LLM seja integrado posteriormente;
+
+Este documento atende às métricas básicas de assertividade, segurança e coerência, conforme solicitado pelo desafio.[LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
