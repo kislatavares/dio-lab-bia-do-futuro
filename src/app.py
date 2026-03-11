@@ -7,8 +7,9 @@ from openai import OpenAI
 transacoes, historico, perfil, produtos = carregar_dados()
 
 # Inicializar LLM
-llm_client = OpenAI(api_key="SUA_API_KEY")
+import os
 
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 # Inicializar agente
 agente = FinBuddy(transacoes, historico, perfil, produtos, llm_client)
 
