@@ -9,7 +9,7 @@ transacoes, historico, perfil, produtos = carregar_dados()
 # Inicializar LLM
 import os
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+GOOGLE_API_KEY = os.getenv("AIzaSyBPd6FFmXQPtgl_sl15e3TWXZKa_4AeD6o")
 # Inicializar agente
 agente = FinBuddy(transacoes, historico, perfil, produtos, llm_client)
 
